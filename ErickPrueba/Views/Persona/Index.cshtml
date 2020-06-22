@@ -1,0 +1,67 @@
+﻿@model List<ErickPrueba.Models.ViewModels.ListPersonaViewModel>
+
+@{
+    ViewBag.Title = "Datos de Personas";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row" style="text-align:right; padding:5px">
+    <a href="~/Persona/Nuevo" class="btn btn-primary">Nuevo</a>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Fecha De nacimiento</th>
+            </tr>
+
+            @{int count = 0; }
+            @foreach (var oElemento in Model)
+
+            {
+                count++;
+                <tr>
+                    <td>@count</td>
+                    <td>@oElemento.Nombre</td>
+                    <td>@oElemento.FechaDeNacimiento.ToString("dd-MM-yyyy")</td>
+
+                    <td>
+                        <a class="btn btn-danger" href="~/Persona/Editar/@oElemento.Id">Editar</a>
+                        <input class="btn btn-success" onclick="jsDelete(@oElemento.Id);" type="button" value="Eliminar" />
+                    </td>
+                </tr>
+
+
+            }
+
+        </table>
+
+    </div>
+
+
+</div>
+<script>
+    function jsDelete(Id) {
+        
+        if (confirm("Estas seguro que desea eliminar el registro")) {
+        url = "@Url.Content("~/Persona/Eliminar")" + "/" + Id;
+            $.post(url, function (data) {
+
+                if (data == "1") {
+
+                    document.location.href = "@Url.Content("~/Persona")"
+                }
+                else {
+                    alert("Ocurrio un Error");
+                }
+
+            }
+        )}
+
+    }
+
+</script>

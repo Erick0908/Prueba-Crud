@@ -1,0 +1,35 @@
+﻿@model ErickPrueba.Models.ViewModels.PersonaViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Editar", "Persona", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(d => d.Id)
+
+            <div>
+                @Html.LabelFor(d => d.Nombre)
+                @Html.TextBoxFor(d => d.Nombre, "", new { @class = "form-control" })
+                @Html.ValidationMessageFor(d => d.Nombre, null, new { @class = "erick" })
+            </div>
+            <br />
+
+            <div>
+                @Html.LabelFor(d => d.FechaDeNacimiento)
+                @Html.EditorFor(d => d.FechaDeNacimiento, "", new { @class = "form-control" }) <br />
+                @Html.ValidationMessageFor(d => d.FechaDeNacimiento, null, new { @class = "erick" })
+            </div>
+
+
+            <div style="text-align:right;">
+                <input value="Guardar" class="btn btn-primary" type="submit" />
+            </div>
+
+        </div>
+
+    </div>
+}
