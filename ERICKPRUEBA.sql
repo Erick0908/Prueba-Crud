@@ -8,13 +8,3 @@ CREATE TABLE Persona (
 	Nombre VARCHAR (60),
 	FechaDeNacimiento DATETIME NOT NULL 
 	)
-
-SELECT * FROM Persona
-
-INSERT Persona(Nombre, FechaDeNacimiento)  
-    VALUES ('Prueba1', '2018/12/02')  
-GO 
-
-SET LANGUAGE SPANISH
-SET DATEFORMAT dmy;  
-GO  
